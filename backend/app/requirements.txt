@@ -1,0 +1,19 @@
+fastapi[all]
+#fastapi-mail==1.5.0
+#fastapi-mail
+#mysql-connector-python
+uvicorn
+python-multipart
+sqlmodel
+#fast_api_auth @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fast_api_auth.git
+#fastapi_obelisk_mail @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fastapi_obelisk_mail.git
+#fastapi_cognito_auth_admin @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fastapi_cognito_auth_admin.git
+#fastapi_db @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fastapi_db.git
+#fastapi_notifications @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fastapi_notifications.git
+fastapi_apikey_auth @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fastapi_apikey_auth.git
+fastapi_api_client @ git+https://obelisk:${GITHUB_TOKEN}@github.com/obelisk-services/fastapi_api_client.git
+
+requests
+#fastapi-radar
+#weasyprint
+#Jinja2
