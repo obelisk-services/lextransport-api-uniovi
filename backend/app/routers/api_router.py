@@ -81,3 +81,19 @@ def getContratos(matricula: str) -> list[Contrato]:
         )
         response.append(contrato_obj)
     return response
+
+@router.get("/api/expediente/{expediente}", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
+#@router.get("/api/contratos", response_model=list[Contrato], status_code=201, tags=["Contratos"])
+def getContratosExpediente(expediente: str) -> list[Contrato]:
+    try:
+        client_api = APIClient()
+        data = client_api.get(f"contratosByExpediente/{expediente}")
+        data = data.get("data", [])
+        expedientes = data.get("expedientes", [])
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al obtener contratos desde la API: {e}")
+
+    if not expedientes:
+        raise HTTPException(status_code=404, detail=f"No se encontraron contratos para el expediente: {expediente}")
+    else:
+        return []
