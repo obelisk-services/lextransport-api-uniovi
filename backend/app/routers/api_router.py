@@ -81,7 +81,7 @@ def getContratos(matricula: str) -> list[Contrato]:
     return response
 
 @router.get("/api/expediente/{expediente}", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
-def getContratosExpediente(expediente: str) -> list[Contrato]:
+def getContratosExpediente(expediente: int) -> list[Contrato]:
     try:
         client_api = APIClient()
         data = client_api.get(f"contratosByExpediente/{expediente}")
