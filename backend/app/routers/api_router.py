@@ -8,7 +8,6 @@ from fastapi_apikey_auth.fastapi_apikey_auth import APIKeyAuth
 
 router = APIRouter()
 
-##from ..dependecies.check_usuario_administrador import check_ruote
 @router.get("/api/contratos", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
 def getContratos() -> list[Contrato]:
     try:
@@ -46,7 +45,6 @@ def getContratos() -> list[Contrato]:
     return response
 
 @router.get("/api/contratos/matricula/{matricula}", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
-#@router.get("/api/contratos", response_model=list[Contrato], status_code=201, tags=["Contratos"])
 def getContratos(matricula: str) -> list[Contrato]:
     try:
         client_api = APIClient()
@@ -83,7 +81,6 @@ def getContratos(matricula: str) -> list[Contrato]:
     return response
 
 @router.get("/api/expediente/{expediente}", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
-#@router.get("/api/contratos", response_model=list[Contrato], status_code=201, tags=["Contratos"])
 def getContratosExpediente(expediente: str) -> list[Contrato]:
     try:
         client_api = APIClient()
