@@ -38,14 +38,15 @@ def getContratos() -> list[Contrato]:
                 ManufSN=linea['ManufSN'],
                 U_tipo=linea['U_tipo'],
                 StartDate=linea['StartDate'],
-                EndDate=linea['EndDate']
+                EndDate=linea['EndDate'],
+                ItemCode=linea['ItemCode'],
             ) for linea in lineas if linea['ContractID'] == contrato['ContractID'] and 'FMENSUAL' not in linea['ManufSN']]
         )
         response.append(contrato_obj)
     return response
 
 @router.get("/api/contratos/matricula/{matricula}", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
-def getContratos(matricula: str) -> list[Contrato]:
+def getContratosByMatricula(matricula: str) -> list[Contrato]:
     try:
         client_api = APIClient()
         data = client_api.get(f"contratosByMatricula/{matricula}")
@@ -74,14 +75,15 @@ def getContratos(matricula: str) -> list[Contrato]:
                 ManufSN=linea['ManufSN'],
                 U_tipo=linea['U_tipo'],
                 StartDate=linea['StartDate'],
-                EndDate=linea['EndDate']
+                EndDate=linea['EndDate'],
+                ItemCode=linea['ItemCode'],
             ) for linea in lineas if linea['ContractID'] == contrato['ContractID'] and 'FMENSUAL' not in linea['ManufSN']]
         )
         response.append(contrato_obj)
     return response
 
-@router.get("/api/expediente/{expediente}", response_model=list[Contrato], status_code=200, tags=["Contratos"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
-def getContratosExpediente(expediente: int) -> list[Contrato]:
+@router.get("/api/expediente/{expediente}", status_code=200, tags=["Expedientes"], dependencies=[Depends(APIKeyAuth(['uniovi']))])
+def checkExpediente(expediente: int) -> None:
     try:
         client_api = APIClient()
         data = client_api.get(f"contratosByExpediente/{expediente}")
@@ -93,4 +95,4 @@ def getContratosExpediente(expediente: int) -> list[Contrato]:
     if not expedientes:
         raise HTTPException(status_code=404, detail=f"No se encontraron contratos para el expediente: {expediente}")
     else:
-        return []
+        return None
