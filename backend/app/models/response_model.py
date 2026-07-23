@@ -23,3 +23,4 @@ class LineaContrato(SQLModel):
     U_tipo: str | None
     StartDate: datetime
     EndDate: datetime
+    ItemCode: str | None

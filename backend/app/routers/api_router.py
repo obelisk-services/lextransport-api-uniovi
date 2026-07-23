@@ -38,7 +38,8 @@ def getContratos() -> list[Contrato]:
                 ManufSN=linea['ManufSN'],
                 U_tipo=linea['U_tipo'],
                 StartDate=linea['StartDate'],
-                EndDate=linea['EndDate']
+                EndDate=linea['EndDate'],
+                ItemCode=linea['ItemCode'],
             ) for linea in lineas if linea['ContractID'] == contrato['ContractID'] and 'FMENSUAL' not in linea['ManufSN']]
         )
         response.append(contrato_obj)
@@ -74,7 +75,8 @@ def getContratosByMatricula(matricula: str) -> list[Contrato]:
                 ManufSN=linea['ManufSN'],
                 U_tipo=linea['U_tipo'],
                 StartDate=linea['StartDate'],
-                EndDate=linea['EndDate']
+                EndDate=linea['EndDate'],
+                ItemCode=linea['ItemCode'],
             ) for linea in lineas if linea['ContractID'] == contrato['ContractID'] and 'FMENSUAL' not in linea['ManufSN']]
         )
         response.append(contrato_obj)
